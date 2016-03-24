@@ -20,7 +20,7 @@ timestamp=`date +%Y%m%d%H%M`
 cd ${PATH_DATALOG}
 
 GZ_FOUND=`find *.gz -print | head -1`
-while [  -s ${GZ_FOUND}  ]
+while [  -s "${GZ_FOUND}"  ]
 do
 
 	echo "========================================================" |tee -a $log
@@ -45,7 +45,7 @@ do
 			nice -n14 /usr/bin/rm -rf $LOG_TAR
 			echo " !Remove all files belong to lot ${LOT_ID}" |tee -a $log
 			nice -n14 /usr/bin/rm -rf ${LOT_ID}*.gz
-			if [ -s ${GZ_FOUND} ]; then
+			if [ -s "${GZ_FOUND}" ]; then
 				echo " +++++ Failed to remove all files belong to ${LOT_ID} since ${GZ_FOUND} is still there. Abort this archive +++" |tee -a $log
 				exit -1
 			fi
